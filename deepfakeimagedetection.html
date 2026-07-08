@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DeepFake Image Detection System</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Poppins',sans-serif;
+scroll-behavior:smooth;
+}
+
+body{
+
+background:linear-gradient(135deg,#0f172a,#1e3a8a,#7c3aed);
+min-height:100vh;
+overflow-x:hidden;
+color:#fff;
+
+}
+
+body::before{
+
+content:'';
+position:fixed;
+width:500px;
+height:500px;
+background:#00f7ff;
+border-radius:50%;
+filter:blur(180px);
+top:-220px;
+left:-180px;
+opacity:.35;
+z-index:-1;
+
+}
+
+body::after{
+
+content:'';
+position:fixed;
+width:500px;
+height:500px;
+background:#ff00aa;
+border-radius:50%;
+filter:blur(180px);
+bottom:-220px;
+right:-180px;
+opacity:.30;
+z-index:-1;
+
+}
+
+header{
+
+position:fixed;
+top:0;
+left:0;
+width:100%;
+padding:18px 70px;
+display:flex;
+justify-content:space-between;
+align-items:center;
+background:rgba(255,255,255,.08);
+backdrop-filter:blur(15px);
+z-index:999;
+
+}
+
+.logo{
+
+display:flex;
+align-items:center;
+gap:12px;
+font-size:28px;
+font-weight:700;
+
+}
+
+.logo i{
+
+font-size:34px;
+color:#00ffff;
+
+}
+
+nav ul{
+
+display:flex;
+list-style:none;
+gap:35px;
+
+}
+
+nav ul li a{
+
+text-decoration:none;
+color:white;
+font-size:18px;
+transition:.4s;
+
+}
+
+nav ul li a:hover{
+
+color:#00ffff;
+
+}
+
+.theme-btn{
+
+width:50px;
+height:50px;
+border:none;
+border-radius:50%;
+cursor:pointer;
+background:linear-gradient(45deg,#00ffff,#ff00ff);
+color:white;
+font-size:20px;
+
+}
+
+.hero{
+
+padding:170px 70px 80px;
+display:flex;
+align-items:center;
+justify-content:space-between;
+gap:50px;
+
+}
+
+.hero-text{
+
+flex:1;
+
+}
+
+.hero-text h1{
+
+font-size:65px;
+line-height:80px;
+
+}
+
+.hero-text span{
+
+color:#00ffff;
+
+}
+
+.hero-text p{
+
+margin-top:20px;
+font-size:20px;
+line-height:35px;
+color:#ddd;
+
+}
+
+.main-btn{
+
+margin-top:35px;
+padding:18px 45px;
+border:none;
+border-radius:40px;
+background:linear-gradient(45deg,#00ffff,#ff00ff);
+font-size:20px;
+color:white;
+cursor:pointer;
+transition:.4s;
+
+}
+
+.main-btn:hover{
+
+transform:translateY(-8px);
+box-shadow:0 0 30px cyan;
+
+}
+
+.hero-image{
+
+flex:1;
+text-align:center;
+
+}
+
+.hero-image img{
+
+width:90%;
+animation:float 5s infinite;
+
+}
+
+@keyframes float{
+
+0%{transform:translateY(0);}
+50%{transform:translateY(-20px);}
+100%{transform:translateY(0);}
+
+}
+
+.stats{
+
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+gap:25px;
+padding:50px 70px;
+
+}
+
+.stat-card{
+
+background:rgba(255,255,255,.08);
+backdrop-filter:blur(20px);
+padding:35px;
+border-radius:20px;
+text-align:center;
+transition:.4s;
+
+}
+
+.stat-card:hover{
+
+transform:translateY(-10px);
+box-shadow:0 0 25px cyan;
+
+}
+
+.stat-card i{
+
+font-size:45px;
+color:#00ffff;
+margin-bottom:15px;
+
+}
+
+.stat-card h2{
+
+font-size:38px;
+
+}
+
+.stat-card p{
+
+margin-top:12px;
+color:#ddd;
+
+}
+
+section{
+
+padding:80px 70px;
+
+}
+
+.title{
+
+text-align:center;
+font-size:45px;
+margin-bottom:50px;
+color:#00ffff;
+
+}
+</style>
+
+</head>
+
+<body>
+
+<header>
+
+<div class="logo">
+<i class="fa-solid fa-shield-halved"></i>
+<span>DeepFake Detector</span>
+</div>
+
+<nav>
+<ul>
+<li><a href="#">Home</a></li>
+<li><a href="#about">About</a></li>
+<li><a href="#features">Features</a></li>
+<li><a href="#upload">Upload</a></li>
+<li><a href="#contact">Contact</a></li>
+</ul>
+</nav>
+
+<button class="theme-btn">
+<i class="fa-solid fa-moon"></i>
+</button>
+
+</header>
+
+<section class="hero">
+
+<div class="hero-text">
+
+<h1>
+
+AI Powered
+
+<span>DeepFake Image Detection</span>
+
+</h1>
+
+<p>
+
+Upload your image and let Artificial Intelligence
+analyze whether it is Real or DeepFake with a
+confidence score.
+
+</p>
+
+<button class="main-btn">
+
+Get Started
+
+</button>
+
+</div>
+
+<div class="hero-image">
+
+<img src="https://cdn-icons-png.flaticon.com/512/4712/4712109.png" alt="AI">
+
+</div>
+
+</section>
+
+<section class="stats">
+
+<div class="stat-card">
+<i class="fa-solid fa-image"></i>
+<h2>15K+</h2>
+<p>Images Scanned</p>
+</div>
+
+<div class="stat-card">
+<i class="fa-solid fa-brain"></i>
+<h2>98%</h2>
+<p>AI Accuracy</p>
+</div>
+
+<div class="stat-card">
+<i class="fa-solid fa-users"></i>
+<h2>8000+</h2>
+<p>Users</p>
+</div>
+
+<div class="stat-card">
+<i class="fa-solid fa-cloud"></i>
+<h2>24/7</h2>
+<p>Cloud Service</p>
+</div>
+
+</section>
